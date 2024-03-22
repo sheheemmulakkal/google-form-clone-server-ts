@@ -9,6 +9,7 @@ interface FormDoc extends Document {
   _id: string;
   title: string;
   description: string;
+  admin: string;
   responses?: string[];
   fields: FieldType[];
 }
@@ -20,6 +21,10 @@ const formSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+  },
+  admin: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
   },
   responses: [{ type: mongoose.Schema.Types.ObjectId }],
   fields: [

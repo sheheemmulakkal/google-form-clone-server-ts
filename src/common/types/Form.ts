@@ -8,6 +8,7 @@ export interface FieldType {
 export interface FormType {
   _id: string;
   title: string;
+  admin: string;
   description: string;
   responses?: string[];
   fields: FieldType[];

@@ -1,10 +1,12 @@
 import express from "express";
-import { submitForm } from "../controller/formController";
+import { getMyForms, submitForm } from "../controller/formController";
 import { adminLogin, adminSignup } from "../controller/adminController";
+import { isAdminAuth } from "../middlewares/authMiddleware";
 
 const router = express.Router();
 
-router.post("/submit-form", submitForm);
+router.get("/get-my-forms", isAdminAuth, getMyForms);
+router.post("/submit-form", isAdminAuth, submitForm);
 router.post("/login", adminLogin);
 router.post("/signup", adminSignup);
 
