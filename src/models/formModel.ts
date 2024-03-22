@@ -26,7 +26,7 @@ const formSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
-  responses: [{ type: mongoose.Schema.Types.ObjectId }],
+  responses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Response" }],
   fields: [
     {
       type: {
