@@ -1,8 +1,8 @@
 import mongoose, { Model, Document } from "mongoose";
-import { AdminType } from "../common/types/Admin";
+import { FormType } from "../common/types/Form";
 
-interface AdminModel extends Model<AdminType> {
-  build(attrs: AdminType): AdminDoc;
+interface AdminModel extends Model<FormType> {
+  build(attrs: FormType): AdminDoc;
 }
 
 interface AdminDoc extends Document {
@@ -21,7 +21,7 @@ const adminSchema = new mongoose.Schema({
   },
 });
 
-adminSchema.statics.build = (admin: AdminType) => {
+adminSchema.statics.build = (admin: FormType) => {
   return new Admin(admin);
 };
 
