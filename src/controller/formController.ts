@@ -4,8 +4,6 @@ import { Form } from "../models/formModel";
 const submitForm = async (req: Request, res: Response) => {
   try {
     const { title, description, fields } = req.body;
-    // console.log(title);
-
     const form = new Form({
       title,
       description,
