@@ -1,30 +1,47 @@
 import mongoose, { Model, Document } from "mongoose";
-import { FormType } from "../common/types/Form";
+import { FormType, FieldType } from "../common/types/Form";
 
-interface AdminModel extends Model<FormType> {
-  build(attrs: FormType): AdminDoc;
+interface FormModel extends Model<FormType> {
+  build(attrs: FormType): FormDoc;
 }
 
-interface AdminDoc extends Document {
-  email: string;
-  password: string;
+interface FormDoc extends Document {
+  _id: string;
+  title: string;
+  description: string;
+  responses?: string[];
+  fields: FieldType[];
 }
 
-const adminSchema = new mongoose.Schema({
-  email: {
+const formSchema = new mongoose.Schema({
+  title: {
     type: String,
     required: true,
   },
-  password: {
+  description: {
     type: String,
-    required: true,
   },
+  responses: [{ type: mongoose.Schema.Types.ObjectId }],
+  fields: [
+    {
+      type: {
+        type: String,
+      },
+      required: {
+        type: Boolean,
+      },
+      label: {
+        type: String,
+      },
+      options: [{ type: String }],
+    },
+  ],
 });
 
-adminSchema.statics.build = (admin: FormType) => {
-  return new Admin(admin);
+formSchema.statics.build = (form: FormType) => {
+  return new Form(form);
 };
 
-const Admin = mongoose.model<AdminDoc, AdminModel>("admin", adminSchema);
+const Form = mongoose.model<FormDoc, FormModel>("form", formSchema);
 
-export { Admin };
+export { Form };

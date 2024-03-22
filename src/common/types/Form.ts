@@ -9,6 +9,6 @@ export interface FormType {
   _id: string;
   title: string;
   description: string;
-  responses: string[];
+  responses?: string[];
   fields: FieldType[];
 }
